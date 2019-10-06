@@ -114,14 +114,6 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<!-- 日志文件管理包 -->
-		<!-- log start -->
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-
 		<!-- json转换工具 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -214,6 +206,12 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope>test</scope>
+		</dependency>
+		<!--这个依赖直接包含了 logback-core 以及 slf4j-api的依赖 -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
 		</dependency>
 	</dependencies>
 	<build>
