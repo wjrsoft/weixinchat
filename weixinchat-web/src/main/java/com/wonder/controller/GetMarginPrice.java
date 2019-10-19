@@ -18,8 +18,8 @@ import com.wonder.utils.HttpClientUtil;
  * 处理器
  */
 @Controller
-public class getMarginPrice {
-	private final static Logger logger = LoggerFactory.getLogger(getMarginPrice.class);
+public class GetMarginPrice {
+	private final static Logger logger = LoggerFactory.getLogger(GetMarginPrice.class);
 	@RequestMapping("/getMarginPrice.do")
 	@ResponseBody
 	public JSONArray hello(HttpServletRequest req, HttpServletResponse resp) {
@@ -28,8 +28,9 @@ public class getMarginPrice {
 		String json = "";
 		System.out.println("进入getMarginPrice.do");
 		try {
-			json = HttpClientUtil.doGet(
+			JSONObject	jsonObject = HttpClientUtil.doGet(
 					"http://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/cpair-quot.json?t=1562509287483&t=1562509297494'");
+			json=jsonObject.toJSONString();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			}

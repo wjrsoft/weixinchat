@@ -1,13 +1,14 @@
 package com.wonder.utils;
 
-
 import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
@@ -17,7 +18,6 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 /**
  * doGet和doPost请求
@@ -33,17 +33,17 @@ public class HttpClientUtil {
 	 * @throws ParseException
 	 * @throws IOException
 	 */
-	public static String doGetStr(String url) throws ParseException, IOException{
+	public static JSONObject doGetStr(String url) throws ParseException, IOException{
 		DefaultHttpClient client = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(url);
+		JSONObject jsonObject = null;
 		HttpResponse httpResponse = client.execute(httpGet);
 		HttpEntity entity = httpResponse.getEntity();
-		String result="";
 		if(entity != null){
-			result = EntityUtils.toString(entity,"UTF-8");
-			
+			String result = EntityUtils.toString(entity,"UTF-8");
+			jsonObject = JSONObject.parseObject(result);
 		}
-		return result;
+		return jsonObject;
 	}
 	
 	/**
@@ -52,8 +52,7 @@ public class HttpClientUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	
-	public static String doGet(String url) throws Exception {
+	public static JSONObject doGet(String url) throws Exception {
 		// 创建一个httpclient链接对象
 		HttpClient httpclient = new DefaultHttpClient();
 		URL mURL = new URL(url);
@@ -62,8 +61,8 @@ public class HttpClientUtil {
 		ResponseHandler<String> responseHandler = new BasicResponseHandler();
 		// 执行请求并获取结果
 		String responseBody = httpclient.execute(httpGet, responseHandler);
-		
-		return responseBody;
+		JSONObject jsonObject = JSONObject.parseObject(responseBody);
+		return jsonObject;
 	}
 	
 	/**
@@ -83,11 +82,5 @@ public class HttpClientUtil {
 		String result = EntityUtils.toString(response.getEntity(),"UTF-8");
 		jsonObject = JSONObject.parseObject(result);
 		return jsonObject;
-	}
-	
-	public static void main(String[] args) throws Exception {
-		String str=doGetStr("http://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/cpair-quot.json?t=1562509287483&t=1562509297494'");
-		System.out.println(JSON.toJSONString(str));
-		System.out.println(doGetStr("http://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/cpair-quot.json?t=1562509287483&t=1562509297494'"));
 	}
 }

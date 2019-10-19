@@ -9,7 +9,7 @@
         <!--定义了一个过滤器,在LEVEL之下的日志输出不会被打印出来-->
         <!--这里定义了DEBUG，也就是控制台不会输出比ERROR级别小的日志-->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>DEBUG</level>
+            <level>INFO</level>
         </filter>
         <!-- encoder 默认配置为PatternLayoutEncoder -->
         <!--定义控制台输出格式-->
@@ -63,4 +63,8 @@
     <!--由于设置了 additivity="false" ，所以输出时不会使用rootLogger的appender-->
     <!--但是这个logger本身又没有配置appender，所以使用这个logger输出日志的话就不会输出到任何地方-->
     <logger name="mytest2" level="info" additivity="false"/>
+    
+    <logger name="com.wonder" level="info" additivity="false">
+        <appender-ref ref="stdout"/>
+    </logger>
 </configuration>
