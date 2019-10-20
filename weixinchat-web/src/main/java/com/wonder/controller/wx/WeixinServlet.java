@@ -9,8 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.dom4j.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,8 +32,7 @@ import com.wonder.utils.XMLToMap;
  */
 @Controller
 public class WeixinServlet extends HttpServlet {
-	@Autowired
-	private static Logger logger = Logger.getLogger(WeixinServlet.class);  
+	private final static Logger logger = LoggerFactory.getLogger(WeixinServlet.class);  
 	@Override
 	/**
 	 * 签名验证一微信发的是get请求
@@ -42,6 +41,7 @@ public class WeixinServlet extends HttpServlet {
 	 */
 	@RequestMapping(value="/wx.do",method = RequestMethod.GET)
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
+		System.out.println("*******doGet请求，进入WeixinServlet");
 		logger.info("**************doGet请求，进入WeixinServlet");
 		String signature=req.getParameter("signature");
 		String timestamp=req.getParameter("timestamp");

@@ -1,15 +1,14 @@
 package com.wonder.utils;
 
-import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.log4j.Logger;
 /**
  * 读取config.properties
- * @author yp-tc-m-7157
- *
+ * @author wangjinrong
  */
 public class ConfigUtil {
-	private static Logger log = Logger.getLogger(ConfigUtil.class);
+	private final static Logger logger = LoggerFactory.getLogger(ConfigUtil.class);
 	//外网IP
 	public static String WEBURL;
 	//微信appID
@@ -22,18 +21,13 @@ public class ConfigUtil {
 	public static String WXSKURL;
 	public static String LOGIN_INTERFACE;
 	static{
-			 WXSKURL="http://1be4d358.ngrok.io/tel-weixin-web";
-			 WEBURL="http://1be4d358.ngrok.io/tel-weixin-web";
-			 APPID="wx89704883e840ad12";
-			 APPSECRET="164b46657ce328e80fd2db4484748f1a";
+			 WXSKURL="http://1be4d358.ngrok.io/weixin-web";
+			 WEBURL="http://1j6712x825.iask.in//weixinchat-web";
+			 APPID="wx0d804932750ad1d1";
+			 APPSECRET="26f206c509e1bd8a796f6c3fd132e2d6";
 			 TOKEN="tokenSignature";
-			 LOGIN_INTERFACE="https://qa.yeepay.com/selfservice/customerLoginInterface.action";
-			 //统一配置
-			 //WEBURL="http://e235da5a.ngrok.io/tel-app-web";
-//			 APPID=ConfigConst.WeixinAppID.toString();
-//			 APPSECRET=ConfigConst.WeixinAppsecret.toString();
-//			 TOKEN=ConfigConst.WeixinSignatureToken.toString();
-//			 log.info("外网IP:"+WEBURL);
-			 
+			 LOGIN_INTERFACE="test";
+			 logger.info("weburl[{}]"+WEBURL);
 		}
+	
 }
