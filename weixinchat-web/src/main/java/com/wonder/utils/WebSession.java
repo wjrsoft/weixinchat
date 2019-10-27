@@ -1,8 +1,6 @@
 package com.wonder.utils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -41,11 +39,11 @@ public class WebSession {
 	 * @throws Exception
 	 */
 	public static void setSessionBycode(HttpServletRequest req,String code) throws Exception{
-		if(code!=null){
-			log.info("授权页返回code，将openid信息放到session中");
-			JSONObject json=OAuth.getUserInfo(code);
-			WebSession.saveSession(req, json.getString("openid"), json.getString("refresh_token"));
-		}
+//		if(code!=null){
+//			log.info("授权页返回code，将openid信息放到session中");
+//			JSONObject json=OAuth.getUserInfo(code);
+//			WebSession.saveSession(req, json.getString("openid"), json.getString("refresh_token"));
+//		}
 	}
 	
 	/**

@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 /**
  * 因为没有数据库存储Token暂时先用文件存储，后期应该会用redis或者数据库存储
  * @author 王锦荣

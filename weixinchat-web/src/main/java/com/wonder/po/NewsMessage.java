@@ -3,7 +3,6 @@ package com.wonder.po;
 import java.util.List;
 /**
  * 图文消息封装体
- * @author yp-tc-m-7157
  *
  */
 public class NewsMessage extends BaseMessage{

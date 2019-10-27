@@ -3,7 +3,8 @@ package com.wonder.utils;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * 签名工具类
  * @author jinrong.wang
@@ -11,8 +12,7 @@ import org.apache.log4j.Logger;
  */
 public class SignatureUtil {
 	
-	private static Logger log = Logger.getLogger(SignatureUtil.class);
-	
+	private final static Logger log = LoggerFactory.getLogger(SignatureUtil.class);
 	/**
 	 *
 	 * 	开发者提交信息后，微信服务器将发送GET请求到填写的服务器地址URL上

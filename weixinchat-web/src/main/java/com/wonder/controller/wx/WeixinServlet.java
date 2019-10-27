@@ -9,10 +9,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.dom4j.DocumentException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +30,7 @@ import com.wonder.utils.XMLToMap;
  * @author jinrong.wang
  *
  */
+@SuppressWarnings("serial")
 @Controller
 public class WeixinServlet extends HttpServlet {
 	private final static Logger logger = LoggerFactory.getLogger(WeixinServlet.class);  
@@ -55,6 +56,7 @@ public class WeixinServlet extends HttpServlet {
 		}
 	}
 	
+	@SuppressWarnings({ "unused", "unchecked" })
 	@Override
 	/**
 	 * 微信客户端消息回复会走Post请求
@@ -168,6 +170,7 @@ public class WeixinServlet extends HttpServlet {
 	
 	////////////////消息内容封装,这里只是举例//////////////////////////
 	
+	@SuppressWarnings("rawtypes")
 	public List getNewsList(){
 		List<News> newsList = new ArrayList<News>();
 		News news = new News();

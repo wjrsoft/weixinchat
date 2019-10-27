@@ -17,4 +17,12 @@
 	<name>weixinchat-web Maven Webapp</name>
 	<!-- FIXME change it to the project's website -->
 	<url>http://www.example.com</url>
+	<dependencies>
+		<dependency>
+			<groupId>com.wonder</groupId>
+			<artifactId>weixinchat-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+			
 </project>

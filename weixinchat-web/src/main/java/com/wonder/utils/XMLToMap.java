@@ -22,6 +22,7 @@ public class XMLToMap {
 	 * @throws DocumentException 
 	 * @throws IOException 
 	   */
+		@SuppressWarnings("unchecked")
 		public static Map<String,String> xmlToMap(HttpServletRequest req) throws DocumentException, IOException {
 			Map<String,String> map=new HashMap<String,String>();
 			SAXReader reader=new SAXReader();

@@ -21,8 +21,8 @@ public class ConfigUtil {
 	public static String WXSKURL;
 	public static String LOGIN_INTERFACE;
 	static{
-			 WXSKURL="http://1be4d358.ngrok.io/weixin-web";
-			 WEBURL="http://1j6712x825.iask.in//weixinchat-web";
+			 WXSKURL="http://1j6712x825.iask.in/weixin-web";
+			 WEBURL="http://1j6712x825.iask.in/weixinchat-web";
 			 APPID="wx0d804932750ad1d1";
 			 APPSECRET="26f206c509e1bd8a796f6c3fd132e2d6";
 			 TOKEN="tokenSignature";

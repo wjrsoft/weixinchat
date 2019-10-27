@@ -1,14 +1,5 @@
 package com.wonder.utils;
 
-import java.net.URI;
-import java.net.URL;
-import java.net.URLEncoder;
-
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.log4j.Logger;
 
 import com.alibaba.fastjson.JSON;
