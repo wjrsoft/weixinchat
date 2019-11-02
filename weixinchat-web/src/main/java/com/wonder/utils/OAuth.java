@@ -1,13 +1,15 @@
 package com.wonder.utils;
 
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 public class OAuth {
 	
-	private static Logger log = Logger.getLogger(OAuth.class);
+	private final static Logger log = LoggerFactory.getLogger(OAuth.class);
 	/**
 	 * 引导授权页
 	 */
@@ -112,9 +114,31 @@ public class OAuth {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
 		return json;
 	}
+	/**
+	 * 获取openid
+	 * @param code
+	 * @return
+	 */
+	public static String getOpenId(String code) {
+		JSONObject json = new JSONObject();
+		String url = null;
+		String openid = "";
+		try {
+			log.info("拉取用户基本openid");
+			url = accessToken.replace("APPID", ConfigUtil.APPID);
+			url = url.replace("SECRET", ConfigUtil.APPSECRET);
+			url = url.replace("CODE", code);
+			json = HttpClientUtil.doGet(url);
+			openid = json.getString("openid");
+			log.info("openid[{}]",openid);
+		} catch (Exception e) {
+			log.error("异常[{}]"+e);
+		}
+		return openid;
+	}
+	
 	/**
 	 * 使用refresh_token 这样就可以不要重复通过微信授权页获取openid,而是服务器直接取
 	 * 获取Token,openid信息

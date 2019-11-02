@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 public class WeixnchatFilter  implements Filter{
 	private final static Logger logger = LoggerFactory.getLogger(WeixnchatFilter.class);
 	public void init(FilterConfig filterConfig) throws ServletException {
-		logger.info("----Filter初始化----");
+//		logger.info("----Filter初始化----");
 		//System.out.println("----Filter初始化----"); 
 		
 	}
@@ -26,9 +26,9 @@ public class WeixnchatFilter  implements Filter{
         request.setCharacterEncoding("UTF-8");  
         response.setCharacterEncoding("UTF-8");  
         response.setContentType("text/html;charset=UTF-8");  
-        logger.info("----调用service之前执行一段代码----");  
+//        logger.info("----调用service之前执行一段代码----");  
         chain.doFilter(request, response); // 执行目标资源，放行  
-        logger.info("----调用service之后执行一段代码----");  
+//        logger.info("----调用service之后执行一段代码----");  
 		
 	}
 

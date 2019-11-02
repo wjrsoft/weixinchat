@@ -33,7 +33,7 @@ public class OAuthInterceptor implements HandlerInterceptor  {
 	}
 	
 	/**
-	 * 1、如果session中是否有openid，如果有则放行，如果没有则继续
+	 * 1、判断session中是否有openid，如果有则放行，如果没有则继续
 	 * 2、如果请求中带有code，则获取openid
 	 * 		2.1、检查openid是否已注册，如未注册跳注册页，注册页设置用户名，登录名为openid为自动填写，注册成功后，关闭页面
 	 * 		2.2、检查openid已注册，跳转登录页，输入密码登录，将openID记录session
@@ -43,25 +43,32 @@ public class OAuthInterceptor implements HandlerInterceptor  {
 	
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object obj) throws Exception {
 		String uri = req.getServletPath();
-		log.info("进入preHandle,请求地址"+uri);
-		
-		String code=req.getParameter("code");
-		if (code != null) {
-			log.info("proHandle中的code值:[{}]",code);
-			return true;//test
+		log.info("进入preHandle,请求地址" + uri);
+		// 1、session存在openid放行
+		if (WebSession.isSessionEffective(req)) {
+			return true;
 		}
-		log.info("proHandle中的code值:[{}]",code);
-		String url=OAuth.getSnsapi_baseUrl(ConfigUtil.WEBURL+uri);
+		String code = req.getParameter("code");
+		if (code != null) {
+			log.info("proHandle中的code值:[{}]", code);
+			String openid = OAuth.getOpenId(code);
+			resp.sendRedirect(ConfigUtil.WEBURL+"/login"+"?openid="+openid);//跳转到登录页
+		}else {
+			String url=OAuth.getSnsapi_baseUrl(ConfigUtil.WEBURL+uri);
+			log.info(url);
+			resp.sendRedirect(url);
+		}
+		
 //		//微信授权页请求会返回code,如果code不为空则获取openid，并且保存到session中
-		WebSession.setSessionBycode(req,code);
+//		WebSession.setSessionBycode(req,code);
 		//openid存入session中之后，判断是否登录商户
 		//isRelationMerchant((String) req.getSession().getAttribute("openid"),resp);
 		//如果session中没有openid
-		if(!WebSession.isSessionEffective(req)){
-			log.info("授权页地址："+url);
-		    log.info("session中没有openid：将发起授权页重定向");
-			resp.sendRedirect(url);
-		}
+//		if(!WebSession.isSessionEffective(req)){
+//			log.info("授权页地址："+url);
+//		    log.info("session中没有openid：将发起授权页重定向");
+//			resp.sendRedirect(url);
+//		}
 		//openid是否关联商户，如果没有则重定向至登录页面
 		
 		

@@ -51,12 +51,12 @@ public class CreateMenu2 {
 		button11.setName("价格");
 		button11.setType("view");
 //		button11.setUrl(ConfigUtil.WEBURL+"/receipt/query");
-		button11.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginPrice.html"));
+		button11.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginPriceWeb"));
 		//视图按钮，Type=view,点击后跳转到设置的URL中
 		ViewButton button21 = new ViewButton();
-		button21.setName("缓存查询");
+		button21.setName("价格数据");
 		button21.setType("view");
-		button21.setUrl("http://1j6712x825.iask.in/weixinchat-web/"+"login.html");
+		button21.setUrl("http://1j6712x825.iask.in/weixinchat-web/"+"getMarginPrice.do");
 		
 		ViewButton button22 = new ViewButton();
 		button22.setName("查询1");
