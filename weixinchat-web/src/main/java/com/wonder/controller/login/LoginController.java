@@ -37,7 +37,7 @@ public class LoginController {
 	 * @param openid
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("/login.do")
 	public ModelAndView login(@RequestParam(value = "openid") String openid){
 		log.info("openid[{}]",openid);
 		log.info("进入login");
@@ -59,7 +59,7 @@ public class LoginController {
 		}
 		
 	}
-	@RequestMapping(value="/reg")
+	@RequestMapping(value="/reg.do")
 	public ModelAndView regAction(){
 		log.info("进入reg");
 		ModelAndView mav = new ModelAndView();
@@ -67,7 +67,7 @@ public class LoginController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/toLogin")
+	@RequestMapping(value="/toLogin.do")
 	@ResponseBody
 	public String tologin(HttpServletRequest req,
 						  HttpServletResponse resp,
@@ -86,7 +86,7 @@ public class LoginController {
 				map.put("result","登录成功");
 				map.put("status","1");
 				req.getSession().setAttribute("openid", account);//记录session
-				req.getSession().setMaxInactiveInterval(60);
+				req.getSession().setMaxInactiveInterval(300);
 //				req.getSession().setAttribute("refresh_token", refresh_token);
 			}else {
 				map.put("result","密码错误");
@@ -104,7 +104,7 @@ public class LoginController {
 	
 	
 	
-	@RequestMapping("/toReg")
+	@RequestMapping("/toReg.do")
 	@ResponseBody
 	public String testabc(HttpServletRequest req,
 						  HttpServletResponse resp,

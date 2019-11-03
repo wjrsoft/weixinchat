@@ -51,7 +51,7 @@ public class CreateMenu2 {
 		button11.setName("价格");
 		button11.setType("view");
 //		button11.setUrl(ConfigUtil.WEBURL+"/receipt/query");
-		button11.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginPriceWeb"));
+		button11.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginPriceWeb.do"));
 		//视图按钮，Type=view,点击后跳转到设置的URL中
 		ViewButton button21 = new ViewButton();
 		button21.setName("价格数据");

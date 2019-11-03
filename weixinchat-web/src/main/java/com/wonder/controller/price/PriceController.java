@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PriceController {
 	private static Logger log = LoggerFactory.getLogger(PriceController.class);
-	@RequestMapping("/marginPriceWeb")
+	@RequestMapping("/marginPriceWeb.do")
 	public ModelAndView marginPriceWeb(){
 		log.info("进入login");
 		//如果用户存在跳转登录页登录

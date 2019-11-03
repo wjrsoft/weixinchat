@@ -26,7 +26,7 @@
 		 var password= $("#password").val();
 		
 		$.ajax({
- 			url:"${pageContext.request.contextPath}/toLogin",
+ 			url:"${pageContext.request.contextPath}/toLogin.do",
  			type:"post",
  			
  			async:false,

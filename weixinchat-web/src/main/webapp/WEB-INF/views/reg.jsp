@@ -32,7 +32,7 @@
 					return;
 				}
 
-				mui.ajax('${pageContext.request.contextPath}/toReg',{
+				mui.ajax('${pageContext.request.contextPath}/toReg.do',{
 					data:{
 						name:name,
 						password:password
@@ -45,11 +45,11 @@
 						if(data.status==1){
 							mui.alert(data.result, function() {
 							});
-							window.location="${pageContext.request.contextPath}/login?openid="+name;
+							window.location="${pageContext.request.contextPath}/login.do?openid="+name;
 						}else if(data.status==2){
 							mui.alert(data.result, function() {
 							});
-							window.location="${pageContext.request.contextPath}/login?openid="+name;
+							window.location="${pageContext.request.contextPath}/login.do?openid="+name;
 						}else{
 							mui.alert("注册失败", function() {
 							});

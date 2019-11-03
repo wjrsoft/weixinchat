@@ -47,9 +47,8 @@
 			<mvc:exclude-mapping path="/*/*.css" />
 			<mvc:exclude-mapping path="/*.jpg" />
 			<mvc:exclude-mapping path="/*/*.jpg" />
-			
-			
-			
+			<mvc:exclude-mapping path="/*/*.html" />
+			<mvc:exclude-mapping path="/*.html" />
 			<!-- <mvc:exclude-mapping path="/marginPriceWeb.do" />
 			<mvc:exclude-mapping path="/marginPriceWeb" />
 			<mvc:exclude-mapping path="/getMarginPrice.do" />

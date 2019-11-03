@@ -52,7 +52,7 @@ public class OAuthInterceptor implements HandlerInterceptor  {
 		if (code != null) {
 			log.info("proHandle中的code值:[{}]", code);
 			String openid = OAuth.getOpenId(code);
-			resp.sendRedirect(ConfigUtil.WEBURL+"/login"+"?openid="+openid);//跳转到登录页
+			resp.sendRedirect(ConfigUtil.WEBURL+"/login.do"+"?openid="+openid);//跳转到登录页
 		}else {
 			String url=OAuth.getSnsapi_baseUrl(ConfigUtil.WEBURL+uri);
 			log.info(url);
