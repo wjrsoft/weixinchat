@@ -57,6 +57,7 @@ public class OAuthInterceptor implements HandlerInterceptor  {
 			String url=OAuth.getSnsapi_baseUrl(ConfigUtil.WEBURL+uri);
 			log.info(url);
 			resp.sendRedirect(url);
+			
 		}
 		
 //		//微信授权页请求会返回code,如果code不为空则获取openid，并且保存到session中
@@ -73,7 +74,7 @@ public class OAuthInterceptor implements HandlerInterceptor  {
 		
 		
 		
-		return true;
+		return false;
 	}
 	
 	public  void  isRelationMerchant(String openid,HttpServletResponse resp) throws IOException{

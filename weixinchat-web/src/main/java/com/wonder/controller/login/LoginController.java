@@ -55,6 +55,7 @@ public class LoginController {
 			mav.addObject("openid",openid);
 			mav.getModel().put("openid", openid);
 			mav.setViewName("reg");
+			log.info("用户不存在,跳转注册页");
 			return mav;
 		}
 		

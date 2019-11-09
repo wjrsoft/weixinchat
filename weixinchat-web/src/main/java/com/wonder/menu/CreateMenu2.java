@@ -48,54 +48,54 @@ public class CreateMenu2 {
 		Menu menu = new Menu();
 		//点击事件Type=click，后台根据key实现业务逻辑
 		ViewButton button11 = new ViewButton();
-		button11.setName("价格");
+		button11.setName("niceDayO");
 		button11.setType("view");
 //		button11.setUrl(ConfigUtil.WEBURL+"/receipt/query");
 		button11.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginPriceWeb.do"));
 		//视图按钮，Type=view,点击后跳转到设置的URL中
 		ViewButton button21 = new ViewButton();
-		button21.setName("价格数据");
+		button21.setName("spotPrice");
 		button21.setType("view");
-		button21.setUrl("http://1j6712x825.iask.in/weixinchat-web/"+"getMarginPrice.do");
+		button21.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginPriceWeb.do"));
 		
 		ViewButton button22 = new ViewButton();
-		button22.setName("查询1");
+		button22.setName("CNYPrice");
 		button22.setType("view");
-		button22.setUrl("http://1j6712x825.iask.in/weixinchat-web/"+"/wx/auth");
+		button22.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginCNYWeb.do"));
 		
 		ViewButton button23 = new ViewButton();
-		button23.setName("待查询");
+		button23.setName("cacheTime");
 		button23.setType("view");
-		button23.setUrl("http://1j6712x825.iask.in/weixinchat-web/"+"wx/auth");
+		button23.setUrl(ConfigUtil.WEBURL+"/temp.do");
 		
 		Button button02 = new Button();
-		button02.setName("国际价格");
+		button02.setName("marginprice");
 		button02.setSub_button(new Button[]{button21,button22,button23});
 		
 		//视图按钮，登录页
 		ViewButton button31 = new ViewButton();
-		button31.setName("我的账户");
+		button31.setName("个人信息");
 		button31.setType("view");
-		button31.setUrl("http://1j6712x825.iask.in/weixinchat-web/"+"wx/auth");
+		button31.setUrl(ConfigUtil.WEBURL+"/temp.do");
 		
 		ViewButton button32 = new ViewButton();
-		button32.setName("管理1");
+		button32.setName("管理员2");
 		button32.setType("view");
-		button32.setUrl("http://1j6712x825.iask.in/weixinchat-web"+"/wx/auth");
+		button32.setUrl(ConfigUtil.WEBURL+"/temp.do");
 		
 		ViewButton button33 = new ViewButton();
-		button33.setName("管理2");
+		button33.setName("管理员1");
 		button33.setType("view");
-		button33.setUrl("http://1j6712x825.iask.in/weixinchat-web/"+"/wx/auth");
+		button33.setUrl(ConfigUtil.WEBURL+"/temp.do");
 		
 		ViewButton button34 = new ViewButton();
 		button34.setName("操作员");
 		button34.setType("view");
-		button34.setUrl("http://108748fc.ngrok.io/test"+"/wx/auth");
+		button34.setUrl(ConfigUtil.WEBURL+"/temp.do");
 		
 		
 		Button button03 = new Button();
-		button03.setName("商户");
+		button03.setName("我的账户");
 		button03.setSub_button(new Button[]{button31,button32,button33,button34});
  
 		//设置运营中心，搜索，查看为一级菜单
