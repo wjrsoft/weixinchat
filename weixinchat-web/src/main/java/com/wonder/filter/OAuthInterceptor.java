@@ -7,9 +7,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+import com.wonder.core.dao.WxUserDAO;
+import com.wonder.core.schema.WxUser;
 import com.wonder.utils.ConfigUtil;
 import com.wonder.utils.OAuth;
 import com.wonder.utils.WebSession;
@@ -18,6 +23,8 @@ import com.wonder.utils.WebSession;
  *
  */
 public class OAuthInterceptor implements HandlerInterceptor  {
+	@Autowired
+	WxUserDAO wxUserDAO;
 	
 	private final static Logger log = LoggerFactory.getLogger(OAuthInterceptor.class);
 	
@@ -44,6 +51,14 @@ public class OAuthInterceptor implements HandlerInterceptor  {
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object obj) throws Exception {
 		String uri = req.getServletPath();
 		log.info("进入preHandle,请求地址" + uri);
+//		if (uri.contains("getCNYPrice.do") || uri.contains("getMarginPrice.do") || uri.contains("getGoldAGTDPrice.do")
+//				|| uri.contains("getGoldAUTDPrice.do") || uri.contains("marginPriceWeb.do")
+//				|| uri.contains("GoldAGTDWeb.do") || uri.contains("GoldAUTDWeb.do")
+//				||uri.contains("loginOut.do")) {
+//			return true;
+//		}
+//		WxUser wxUser = wxUserDAO.selectByOpenid("o0faKw0cZaQw78n2lY5xBEkdfQ8I");
+//		System.out.println(JSON.toJSON(wxUser));
 		// 1、session存在openid放行
 		if (WebSession.isSessionEffective(req)) {
 			return true;

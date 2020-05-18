@@ -64,13 +64,25 @@ public class CreateMenu2 {
 		button22.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginCNYWeb.do"));
 		
 		ViewButton button23 = new ViewButton();
-		button23.setName("cacheTime");
+		button23.setName("AGTDPrice");
 		button23.setType("view");
-		button23.setUrl(ConfigUtil.WEBURL+"/temp.do");
+		button23.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"GoldAGTDWeb.do"));
+		ViewButton button24 = new ViewButton();
+		button24.setName("AGTDPrice");
+		button24.setType("view");
+		button24.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"GoldAUTDWeb.do"));
+		
+		
+		
+		
+//		ViewButton button24 = new ViewButton();
+//		button24.setName("cacheTime");
+//		button24.setType("view");
+//		button24.setUrl(ConfigUtil.WEBURL+"/temp.do");
 		
 		Button button02 = new Button();
 		button02.setName("marginprice");
-		button02.setSub_button(new Button[]{button21,button22,button23});
+		button02.setSub_button(new Button[]{button21,button22,button23,button24});
 		
 		//视图按钮，登录页
 		ViewButton button31 = new ViewButton();
@@ -89,14 +101,18 @@ public class CreateMenu2 {
 		button33.setUrl(ConfigUtil.WEBURL+"/temp.do");
 		
 		ViewButton button34 = new ViewButton();
-		button34.setName("操作员");
+		button34.setName("注册");
 		button34.setType("view");
 		button34.setUrl(ConfigUtil.WEBURL+"/temp.do");
 		
+		ViewButton button35 = new ViewButton();
+		button35.setName("登出");
+		button35.setType("view");
+		button35.setUrl(ConfigUtil.WEBURL+"/loginOut.do");
 		
 		Button button03 = new Button();
 		button03.setName("我的账户");
-		button03.setSub_button(new Button[]{button31,button32,button33,button34});
+		button03.setSub_button(new Button[]{button31,button32,button33,button34,button35});
  
 		//设置运营中心，搜索，查看为一级菜单
 		menu.setButton(new Button[]{button11,button02,button03});

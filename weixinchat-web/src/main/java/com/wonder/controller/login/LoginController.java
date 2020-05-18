@@ -68,6 +68,23 @@ public class LoginController {
 		return mav;
 	}
 	
+	
+	@RequestMapping(value="/loginOut.do")
+	public ModelAndView loginOut(HttpServletRequest req,
+						  HttpServletResponse resp
+					) throws Exception{
+		req.setCharacterEncoding("utf-8");  
+		resp.setContentType("text/html;charset=utf-8"); 
+		log.info("进入loginOut"); 
+		Map<String,String> map = new HashMap<String,String>();
+				req.getSession().removeAttribute("openid");
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("login");
+				return mav;
+		
+	}
+	
+	
 	@RequestMapping(value="/toLogin.do")
 	@ResponseBody
 	public String tologin(HttpServletRequest req,

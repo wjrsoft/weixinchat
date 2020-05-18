@@ -77,7 +77,7 @@
   				<label class="weui-label">密码：</label>
   			</div>
 		    <div class="weui-cell__bd">
-		      <input id='password'  class="weui-input" type="password" placeholder="登录密码">
+		      <input id='password'  class="weui-input" type="password" value="aaa111" placeholder="登录密码">
 		    </div>
 	    </div>
 		
@@ -95,10 +95,10 @@
         	<label class="weui-label">验证码</label>
         </div>
         <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入验证码" >
+            <input class="weui-input" placeholder="请输入验证码" value="1234" >
         </div>
         <div class="weui-cell__ft">
-            <img id="code" class="weui-vcode-img" src="https://weui.shanliwawa.top/php/code.php" width="130" height="53" onclick="getcode();">
+            <img id="code" class="weui-vcode-img" src="https://weui.shanliwawa.top/php/code.php" width="130"  height="53" onclick="getcode();">
         </div>
    	 </div>
 	   	 

@@ -37,7 +37,7 @@ public class GetCNYPrice {
 		System.out.println("进入getCNYPrice.do");
 		try {
 			//取缓存数据，超过时间更新缓存
-			mapCatchePrice=getMapCatchePrice(this.mapCache.SPOTCNYPRICE,300);
+			mapCatchePrice=getMapCatchePrice(this.mapCache.SPOTCNYPRICE,86400);
 			logger.info("价格[{}]",mapCatchePrice);
 //			JSONObject	jsonObject = HttpClientUtil.doGet(
 //					"http://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/cpair-quot.json?t=1562509287483&t=1562509297494'");
@@ -54,6 +54,7 @@ public class GetCNYPrice {
 	
 	public String getMapCatchePrice(String spot,int overTime) {
 		Boolean isOverTime=this.mapCache.isOverTime(spot, new Long(overTime));
+		logger.info("isOverTime=",isOverTime);
 		try {
 			
 			if (isOverTime) {

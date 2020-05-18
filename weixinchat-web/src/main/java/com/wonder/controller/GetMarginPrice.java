@@ -37,7 +37,7 @@ public class GetMarginPrice {
 		System.out.println("进入getMarginPrice.do");
 		try {
 			//取缓存数据，超过时间更新缓存
-			mapCatchePrice=getMapCatchePrice(this.mapCache.SPOTPRICE,300);
+			mapCatchePrice=getMapCatchePrice(this.mapCache.SPOTPRICE,86400);
 			logger.info("价格[{}]",mapCatchePrice);
 //			JSONObject	jsonObject = HttpClientUtil.doGet(
 //					"http://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/cpair-quot.json?t=1562509287483&t=1562509297494'");

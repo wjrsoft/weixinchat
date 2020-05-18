@@ -21,6 +21,8 @@ public class MapCache {
 	Map<String,Object> map = new HashMap<String,Object>();
 	public static String SPOTPRICE="spotPrice";
 	public static String SPOTCNYPRICE="spotCNYPrice";
+	public static String GOLDAGTDPRICE="GOLDAGTDPRICE";
+	public static String GOLDAUTDPRICE="GOLDAUTDPRICE";
 	Date now = new Date(); 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("HHmmss");//可以方便地修改日期格式
 	
