@@ -1,11 +1,5 @@
 package com.wonder.controller.price;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,9 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.wonder.core.cache.CacheUtils;
 import com.wonder.core.cache.MapCache;
-import com.wonder.utils.HttpClientUtil;
 
 /**
  * 获取外汇价格
@@ -31,6 +24,8 @@ public class GetGoldPrice {
 
 	@Autowired
 	MapCache mapCache;
+	@Autowired
+	CacheUtils cacheUtils;
 
 	@SuppressWarnings({ "unused", "static-access" })
 	@RequestMapping("/getGoldAGTDPrice.do")
@@ -43,7 +38,7 @@ public class GetGoldPrice {
 		System.out.println("进入getGoldAGTDPrice.do");
 		try {
 			// 取缓存数据，超过时间更新缓存
-			mapCatchePrice = getMapCatchePrice(this.mapCache.GOLDAGTDPRICE, 300);
+			mapCatchePrice = cacheUtils.getGoldMapCatchePrice(this.mapCache.GOLDAGTDPRICE, MapCache.GOLDAGTDPRICE_CATCHE_TIME,1);
 			logger.info("价格[{}]", mapCatchePrice);
 		} catch (Exception e) {
 			logger.error("异常[{}]", e);
@@ -64,7 +59,7 @@ public class GetGoldPrice {
 		System.out.println("进入getGoldAUTDPrice.do");
 		try {
 			// 取缓存数据，超过时间更新缓存
-			mapCatchePrice = getMapCatchePrice(this.mapCache.GOLDAUTDPRICE, 300);
+			mapCatchePrice = this.cacheUtils.getGoldMapCatchePrice(this.mapCache.GOLDAUTDPRICE, this.mapCache.GOLDAUTDPRICE_CATCHE_TIME,1);
 			logger.info("价格[{}]", mapCatchePrice);
 		} catch (Exception e) {
 			logger.error("异常[{}]", e);
@@ -72,54 +67,10 @@ public class GetGoldPrice {
 		return JSON.parseArray(mapCatchePrice);
 	}
 	
+
 	
 	
-	@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
-	public String getMapCatchePrice(String spot, int overTime) {
-		Boolean isOverTime = this.mapCache.isOverTime(spot, new Long(overTime));
-		logger.info("isOverTime=", isOverTime);
-		JSONObject jsonObject;
-		try {
-
-			if (isOverTime) {
-				if(this.mapCache.GOLDAGTDPRICE.equals(spot)) {
-					 jsonObject = HttpClientUtil.doGet(
-							"http://api.k780.com/?app=finance.shgold&goldid=1052&version=3&appkey=51412&sign=99a291c772ca77fd6aee3906f0fadc4e&format=json");
-				}else {
-					 jsonObject = HttpClientUtil.doGet(
-							"http://api.k780.com/?app=finance.shgold&goldid=1051&version=3&appkey=51412&sign=99a291c772ca77fd6aee3906f0fadc4e&format=json");
-			
-				}
-				
-				String result = jsonObject.getString("result");
-				List list = new ArrayList();
-				Map map1 = JSON.parseObject(result);
-				Set<String> keys = map1.keySet();
-				for (String key : keys) {
-					Map map = new HashMap();
-					map.put("name", key);
-					map.put("name1", key);
-					map.put("value", map1.get(key));
-					list.add(map);
-				}
-				String json = JSON.toJSONString(list);
-				this.mapCache.putData(spot, json);
-			}
-			return (String) this.mapCache.getMap().get(spot);
-		} catch (Exception e) {
-			logger.error("异常[{}]", e);
-		}
-
-		return null;
-	}
-
-	public String getPrice(String json) {
-		JSONObject jsonObject = JSONObject.parseObject(json);
-		Object obj = jsonObject.get("records");
-		logger.info(JSON.toJSONString(obj));
-		return JSON.toJSONString(obj);
-	}
-
+	
 	public MapCache getMapCache() {
 		return mapCache;
 	}
@@ -128,22 +79,17 @@ public class GetGoldPrice {
 		this.mapCache = mapCache;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked", "unused" })
-	public static void main(String[] args) throws Exception {
-		JSONObject jsonObject = HttpClientUtil.doGet(
-				"http://api.k780.com/?app=finance.shgold&goldid=1052&version=3&appkey=51412&sign=99a291c772ca77fd6aee3906f0fadc4e&format=json");
-		String result = jsonObject.getString("result");
-		List list = new ArrayList();
-		Map map1 = JSON.parseObject(result);
-		Set<String> keys = map1.keySet();
-		for (String key : keys) {
-			Map map = new HashMap();
-			map.put("name", key);
-			map.put("name1", key);
-			map.put("value", map1.get(key));
-			list.add(map);
-		}
-		String json = JSON.toJSONString(list);
+
+
+	public CacheUtils getCacheUtils() {
+		return cacheUtils;
 	}
 
+
+
+	public void setCacheUtils(CacheUtils cacheUtils) {
+		this.cacheUtils = cacheUtils;
+	}
+	
+	
 }

@@ -69,19 +69,16 @@ public class LoginController {
 	}
 	
 	
-	@RequestMapping(value="/loginOut.do")
-	public ModelAndView loginOut(HttpServletRequest req,
-						  HttpServletResponse resp
-					) throws Exception{
-		req.setCharacterEncoding("utf-8");  
-		resp.setContentType("text/html;charset=utf-8"); 
-		log.info("进入loginOut"); 
-		Map<String,String> map = new HashMap<String,String>();
-				req.getSession().removeAttribute("openid");
-				ModelAndView mav = new ModelAndView();
-				mav.setViewName("login");
-				return mav;
-		
+	@RequestMapping(value = "/loginOut.do")
+	public ModelAndView loginOut(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		req.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html;charset=utf-8");
+		log.info("进入loginOut");
+		req.getSession().removeAttribute("openid");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("login");
+		return mav;
+
 	}
 	
 	
@@ -99,7 +96,9 @@ public class LoginController {
 		Map<String,String> map = new HashMap<String,String>();
 		try{
 			WxUser wxUser = wxUserDAO.selectByOpenid(account);
-			if(wxUser!=null&&password.equals(wxUser.getPwd())) {
+			if(wxUser!=null
+//					&&password.equals(wxUser.getPwd())
+					) {
 				log.info("用户[{}]登录成功",wxUser.getOpenid());
 				map.put("result","登录成功");
 				map.put("status","1");

@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.wonder.core.cache.CacheUtils;
 import com.wonder.core.cache.MapCache;
-import com.wonder.utils.HttpClientUtil;
 
 /**
  * 获取外汇价格
@@ -26,6 +25,10 @@ public class GetCNYPrice {
 	
 	@Autowired
 	MapCache mapCache;
+	@Autowired
+	CacheUtils cacheUtils;
+	
+	
 	@SuppressWarnings({ "unused", "static-access" })
 	@RequestMapping("/getCNYPrice.do")
 	@ResponseBody
@@ -37,47 +40,13 @@ public class GetCNYPrice {
 		System.out.println("进入getCNYPrice.do");
 		try {
 			//取缓存数据，超过时间更新缓存
-			mapCatchePrice=getMapCatchePrice(this.mapCache.SPOTCNYPRICE,86400);
+			mapCatchePrice=cacheUtils.getCNYMapCatchePrice(this.mapCache.SPOTCNYPRICE,86400);
 			logger.info("价格[{}]",mapCatchePrice);
-//			JSONObject	jsonObject = HttpClientUtil.doGet(
-//					"http://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/cpair-quot.json?t=1562509287483&t=1562509297494'");
-//			json=jsonObject.toJSONString();
 		} catch (Exception e) {
 			logger.error("异常[{}]",e);
 		}
-//		System.out.println(this.getPrice(json));
-//		System.out.println(mapCatchePrice);
 		return JSON.parseArray(mapCatchePrice);
-//		return JSON.parseArray(this.getPrice(json));
 	}
-	
-	
-	public String getMapCatchePrice(String spot,int overTime) {
-		Boolean isOverTime=this.mapCache.isOverTime(spot, new Long(overTime));
-		logger.info("isOverTime=",isOverTime);
-		try {
-			
-			if (isOverTime) {
-				JSONObject jsonObject = HttpClientUtil.doGet(
-						"http://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/rfx-sp-quot.json?t=1572968607432&t=1572968607441");
-				String json=jsonObject.toJSONString();
-				this.mapCache.putData(spot, getPrice(json));
-			}
-			return (String) this.mapCache.getMap().get(spot);
-		} catch (Exception e) {
-			logger.error("异常[{}]",e);
-		}
-		
-		return null;
-	}
-	
-	public String getPrice(String json) {
-		JSONObject jsonObject = JSONObject.parseObject(json);
-		Object obj = jsonObject.get("records");
-		logger.info(JSON.toJSONString(obj));
-		return JSON.toJSONString(obj);
-	}
-
 
 	public MapCache getMapCache() {
 		return mapCache;
@@ -86,6 +55,16 @@ public class GetCNYPrice {
 
 	public void setMapCache(MapCache mapCache) {
 		this.mapCache = mapCache;
+	}
+
+
+	public CacheUtils getCacheUtils() {
+		return cacheUtils;
+	}
+
+
+	public void setCacheUtils(CacheUtils cacheUtils) {
+		this.cacheUtils = cacheUtils;
 	}
 
 	

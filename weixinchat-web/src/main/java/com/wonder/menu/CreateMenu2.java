@@ -48,30 +48,33 @@ public class CreateMenu2 {
 		Menu menu = new Menu();
 		//点击事件Type=click，后台根据key实现业务逻辑
 		ViewButton button11 = new ViewButton();
-		button11.setName("niceDayO");
+//		button11.setName("niceDayO");
+//		button11.setType("view");
+//	    button11.setUrl(getSnsapi_Userinfo(ConfigUtil.WEBURL+"/marginPriceWeb.do"));
+		button11.setName("设定价格");
 		button11.setType("view");
-//		button11.setUrl(ConfigUtil.WEBURL+"/receipt/query");
-		button11.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginPriceWeb.do"));
+		button11.setUrl(ConfigUtil.WEBURL+"/setAgtdPriceWeb.do");
+//		button11.setUrl(ConfigUtil.WEBURL+"/marginPriceWeb.do");
+
 		//视图按钮，Type=view,点击后跳转到设置的URL中
 		ViewButton button21 = new ViewButton();
 		button21.setName("spotPrice");
 		button21.setType("view");
-		button21.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginPriceWeb.do"));
+		button21.setUrl(ConfigUtil.WEBURL+"/marginPriceWeb.do");
 		
 		ViewButton button22 = new ViewButton();
 		button22.setName("CNYPrice");
 		button22.setType("view");
-		button22.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"marginCNYWeb.do"));
+		button22.setUrl(ConfigUtil.WEBURL+"/marginCNYWeb.do");
 		
 		ViewButton button23 = new ViewButton();
-		button23.setName("AGTDPrice");
+		button23.setName("白银T+D");
 		button23.setType("view");
-		button23.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"GoldAGTDWeb.do"));
+		button23.setUrl(ConfigUtil.WEBURL+"/GoldAGTDWeb.do");
 		ViewButton button24 = new ViewButton();
-		button24.setName("AGTDPrice");
+		button24.setName("黄金T+D");
 		button24.setType("view");
-		button24.setUrl(getSnsapi_Userinfo("http://1j6712x825.iask.in/weixinchat-web/"+"GoldAUTDWeb.do"));
-		
+		button24.setUrl(ConfigUtil.WEBURL+"/GoldAUTDWeb.do");
 		
 		
 		
@@ -81,14 +84,14 @@ public class CreateMenu2 {
 //		button24.setUrl(ConfigUtil.WEBURL+"/temp.do");
 		
 		Button button02 = new Button();
-		button02.setName("marginprice");
+		button02.setName("牌价查询");
 		button02.setSub_button(new Button[]{button21,button22,button23,button24});
 		
 		//视图按钮，登录页
 		ViewButton button31 = new ViewButton();
-		button31.setName("个人信息");
+		button31.setName("设定价格");
 		button31.setType("view");
-		button31.setUrl(ConfigUtil.WEBURL+"/temp.do");
+		button31.setUrl(ConfigUtil.WEBURL+"/setAgtdPriceWeb.do");
 		
 		ViewButton button32 = new ViewButton();
 		button32.setName("管理员2");
@@ -111,7 +114,7 @@ public class CreateMenu2 {
 		button35.setUrl(ConfigUtil.WEBURL+"/loginOut.do");
 		
 		Button button03 = new Button();
-		button03.setName("我的账户");
+		button03.setName("设置");
 		button03.setSub_button(new Button[]{button31,button32,button33,button34,button35});
  
 		//设置运营中心，搜索，查看为一级菜单

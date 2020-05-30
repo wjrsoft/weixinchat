@@ -51,14 +51,14 @@ public class OAuthInterceptor implements HandlerInterceptor  {
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object obj) throws Exception {
 		String uri = req.getServletPath();
 		log.info("进入preHandle,请求地址" + uri);
-//		if (uri.contains("getCNYPrice.do") || uri.contains("getMarginPrice.do") || uri.contains("getGoldAGTDPrice.do")
-//				|| uri.contains("getGoldAUTDPrice.do") || uri.contains("marginPriceWeb.do")
-//				|| uri.contains("GoldAGTDWeb.do") || uri.contains("GoldAUTDWeb.do")
-//				||uri.contains("loginOut.do")) {
-//			return true;
-//		}
-//		WxUser wxUser = wxUserDAO.selectByOpenid("o0faKw0cZaQw78n2lY5xBEkdfQ8I");
-//		System.out.println(JSON.toJSON(wxUser));
+		if (uri.contains("getCNYPrice.do") || uri.contains("getMarginPrice.do") || uri.contains("getGoldAGTDPrice.do")
+				|| uri.contains("getGoldAUTDPrice.do") || uri.contains("marginPriceWeb.do")
+				|| uri.contains("GoldAGTDWeb.do") || uri.contains("GoldAUTDWeb.do")
+				||uri.contains("loginOut.do")
+//				||uri.contains("setAgtdPriceWeb.do")
+				) {
+			return true;
+		}
 		// 1、session存在openid放行
 		if (WebSession.isSessionEffective(req)) {
 			return true;
@@ -75,33 +75,7 @@ public class OAuthInterceptor implements HandlerInterceptor  {
 			
 		}
 		
-//		//微信授权页请求会返回code,如果code不为空则获取openid，并且保存到session中
-//		WebSession.setSessionBycode(req,code);
-		//openid存入session中之后，判断是否登录商户
-		//isRelationMerchant((String) req.getSession().getAttribute("openid"),resp);
-		//如果session中没有openid
-//		if(!WebSession.isSessionEffective(req)){
-//			log.info("授权页地址："+url);
-//		    log.info("session中没有openid：将发起授权页重定向");
-//			resp.sendRedirect(url);
-//		}
-		//openid是否关联商户，如果没有则重定向至登录页面
-		
-		
-		
 		return false;
 	}
 	
-	public  void  isRelationMerchant(String openid,HttpServletResponse resp) throws IOException{
-//		User u=null;
-//		if(StringUtils.isNotBlank(openid)){
-//			 u=userServer.selectByPrimaryKey(openid);
-//			 if(u==null){
-//					log.info("关注者未登录关联商户，请重新登录");
-//					resp.sendRedirect(ConfigUtil.WEBURL+"/login");
-//			 }{
-//				   log.info("关注者已经登录");
-//			 }
-//		}
-	}
 }

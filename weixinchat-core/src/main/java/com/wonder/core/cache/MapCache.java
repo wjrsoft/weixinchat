@@ -23,6 +23,17 @@ public class MapCache {
 	public static String SPOTCNYPRICE="spotCNYPrice";
 	public static String GOLDAGTDPRICE="GOLDAGTDPRICE";
 	public static String GOLDAUTDPRICE="GOLDAUTDPRICE";
+	public static String GOLDAGTDPRICE_original="GOLDAGTDPRICE__original";
+	public static String GOLDAUTDPRICE_original="GOLDAUTDPRICE__original";
+	public static int GOLDAGTDPRICE_CATCHE_TIME=300;
+	public static int GOLDAUTDPRICE_CATCHE_TIME=300;
+	public static String OPENID_BUY_SETTING="OPENID_BUY_SETTING";
+	public static String OPENID_SELL_SETTING="OPENID_SELL_SETTING";
+	public static String CLOCK_LIST="clockList";
+	public static String PRICE_CLOCK_LIST="priceClockList";
+	public static String ACCESS_TOKEN="ACCESS_TOKEN";
+	public static int ACCESS_TOKEN_TIME=5400;
+	
 	Date now = new Date(); 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("HHmmss");//可以方便地修改日期格式
 	
@@ -38,6 +49,9 @@ public class MapCache {
 		log.info("缓存key[{}]，已更新",key);
 	}
 	
+	public Object get(String key) {
+		return map.get(key);
+	}
 	
 	
 	/**
@@ -58,7 +72,8 @@ public class MapCache {
 		Date objectTime = (Date) object;
 		Date now = new Date();
 		Long interval = (now.getTime() - objectTime.getTime()) / 1000;
-		log.info("缓存key[{}]时间相差[{}]",key,interval);
+		log.debug("缓存key[{}]，失效时间[{}]",key,secondTime);
+		log.debug("缓存key[{}]，当前时间与上次更新时间相差[{}]",key,interval);
 		if(secondTime-interval<0) {
 			return true;
 		}else {
@@ -66,6 +81,11 @@ public class MapCache {
 		}
 	}
 	
+	public boolean delData(String key) {
+		map.remove(key+"time");
+		map.remove(key);
+		return true;
+	}
 	public Map<String, Object> getMap() {
 		return map;
 	}

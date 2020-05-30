@@ -136,6 +136,7 @@ public class WeixinUtil {
 		int result = 0;
 		String url = PREVIEW.replace("ACCESS_TOKEN", accessToken);
 		JSONObject jsonObject = HttpClientUtil.doPostStr(url, content);
+		System.out.println("===json:"+jsonObject);
 		if(jsonObject != null){
 			result = jsonObject.getIntValue("errcode");
 		}

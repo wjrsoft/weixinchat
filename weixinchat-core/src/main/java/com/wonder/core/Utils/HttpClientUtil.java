@@ -1,4 +1,4 @@
-package com.wonder.utils;
+package com.wonder.core.Utils;
 
 import java.io.IOException;
 import java.net.URI;
@@ -75,7 +75,6 @@ public class HttpClientUtil {
 		DefaultHttpClient client = new DefaultHttpClient();
 		HttpPost httpost = new HttpPost(url);
 		JSONObject jsonObject = null;
-		System.out.println("请求参数:[{}]"+outStr);
 		httpost.setEntity(new StringEntity(outStr,"UTF-8"));
 		HttpResponse response = client.execute(httpost);
 		String result = EntityUtils.toString(response.getEntity(),"UTF-8");
