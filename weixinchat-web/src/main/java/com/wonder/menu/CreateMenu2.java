@@ -47,14 +47,31 @@ public class CreateMenu2 {
 	public static Menu initMenu(){
 		Menu menu = new Menu();
 		//点击事件Type=click，后台根据key实现业务逻辑
-		ViewButton button11 = new ViewButton();
-//		button11.setName("niceDayO");
+//		ViewButton button11 = new ViewButton();
+////		button11.setName("niceDayO");
+////		button11.setType("view");
+////	    button11.setUrl(getSnsapi_Userinfo(ConfigUtil.WEBURL+"/marginPriceWeb.do"));
+//		button11.setName("设定价格");
 //		button11.setType("view");
-//	    button11.setUrl(getSnsapi_Userinfo(ConfigUtil.WEBURL+"/marginPriceWeb.do"));
-		button11.setName("设定价格");
+//		button11.setUrl(ConfigUtil.WEBURL+"/setAgtdPriceWeb.do");
+////		button11.setUrl(ConfigUtil.WEBURL+"/marginPriceWeb.do");
+		
+		// 设置
+		ViewButton button11 = new ViewButton();
+		button11.setName("白银设置");
 		button11.setType("view");
 		button11.setUrl(ConfigUtil.WEBURL+"/setAgtdPriceWeb.do");
-//		button11.setUrl(ConfigUtil.WEBURL+"/marginPriceWeb.do");
+
+		ViewButton button12 = new ViewButton();
+		button12.setName("白银设置查询");
+		button12.setType("view");
+		button12.setUrl(ConfigUtil.WEBURL + "/querySetAgtdPriceWeb.do");
+
+		Button button01 = new Button();
+		button01.setName("到价设置");
+		button01.setSub_button(new Button[] { button11, button12 });
+		
+		
 
 		//视图按钮，Type=view,点击后跳转到设置的URL中
 		ViewButton button21 = new ViewButton();
@@ -87,7 +104,7 @@ public class CreateMenu2 {
 		button02.setName("牌价查询");
 		button02.setSub_button(new Button[]{button21,button22,button23,button24});
 		
-		//视图按钮，登录页
+		//设置
 		ViewButton button31 = new ViewButton();
 		button31.setName("设定价格");
 		button31.setType("view");
@@ -118,7 +135,7 @@ public class CreateMenu2 {
 		button03.setSub_button(new Button[]{button31,button32,button33,button34,button35});
  
 		//设置运营中心，搜索，查看为一级菜单
-		menu.setButton(new Button[]{button11,button02,button03});
+		menu.setButton(new Button[]{button01,button02,button03});
 		return menu;
 	}
     
