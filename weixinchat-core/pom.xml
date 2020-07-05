@@ -24,6 +24,22 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
+
+
+
+	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+	</build>
 </project>
