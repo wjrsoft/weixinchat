@@ -54,7 +54,13 @@ public class CacheUtils {
 				}
 				String json = JSON.toJSONString(list);
 				this.mapCache.putData(spot, json);
-				this.mapCache.putData(MapCache.GOLDAGTDPRICE_original, result);
+
+				if(this.mapCache.GOLDAGTDPRICE.equals(spot)) {
+					this.mapCache.putData(MapCache.GOLDAGTDPRICE_original, result);
+				}else if(this.mapCache.GOLDAUTDPRICE.equals(spot)){
+					this.mapCache.putData(MapCache.GOLDAUTDPRICE_original, result);
+				}
+
 			}else {
 				logger.info("牌价未超时，返回缓存价格");
 			}

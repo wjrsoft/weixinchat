@@ -21,7 +21,7 @@ public class PriceOrderHandeThread implements Runnable{
 	
 	private boolean isUse= true;
 	
-	private int interval=30;
+	private int interval=60;
 	@Autowired
 	private CacheUtils cacheUtils;
 	@Autowired
@@ -54,7 +54,6 @@ public class PriceOrderHandeThread implements Runnable{
 				Object obj= mapCache.getMap().get(mapCache.CLOCK_LIST);//设置闹钟的列表
 				boolean isUpdate=false;
 				if(obj!=null) {
-					
 					Set<String> set = (Set<String>) obj;
 					if(set.size()>0) {
 						String openid = "";
@@ -83,6 +82,11 @@ public class PriceOrderHandeThread implements Runnable{
 				}
 				Thread.sleep(1000L*interval);
 			}catch(Exception e) {
+				try {
+					Thread.sleep(1000L*interval);
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
 				logger.error("无闹钟列表轮询异常[{}]",e);
 				
 			}
