@@ -13,24 +13,29 @@ public class WxUserTestMain {
 	private final static Logger logger = LoggerFactory.getLogger(WxUserTestMain.class);
 	@SuppressWarnings("resource")
 	
-//	public static void main(String[] args) {
-//		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:spring-core.xml",
-//				"classpath:spring-mybatis.xml");
-//		WxUserDAO wxUserDAO = (WxUserDAO) ac.getBean("wxUserDAO");
-//		WxUser wxUser = new WxUser();
-//		wxUser = (WxUser) wxUserDAO.selectByOpenid("o0faKw0cZaQw78n2lY5xBEkdfQ8I");
-//		logger.info(JSON.toJSONString(wxUser));
-//
-//	}
-	
 	public static void main(String[] args) {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:spring-core.xml",
 				"classpath:spring-mybatis.xml");
 		WxUserDAO wxUserDAO = (WxUserDAO) ac.getBean("wxUserDAO");
 		WxUser wxUser = new WxUser();
-		wxUser.setOpenid("123456");
-		wxUserDAO.insertByWxUser(wxUser);
-		logger.info(JSON.toJSONString(wxUser));
+		wxUser = (WxUser) wxUserDAO.selectByOpenid("1");
+		logger.info("=====:"+JSON.toJSONString(wxUser));
 
 	}
+	
+//	public static void main(String[] args) {
+//		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:spring-core.xml",
+//				"classpath:spring-mybatis.xml");
+//		WxUserDAO wxUserDAO = (WxUserDAO) ac.getBean("wxUserDAO");
+//		WxUser wxUser = new WxUser();
+//		wxUser.setOpenid("123456");
+//		try{
+//			wxUserDAO.insertByWxUser(wxUser);
+//		}catch(Exception e){
+//			logger.error("[{}}11",e);
+//		}
+//
+//		logger.info(JSON.toJSONString(wxUser));
+//
+//	}
 }

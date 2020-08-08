@@ -16,7 +16,7 @@
     where DEPTNO = #{deptno,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from dept
+    delete from DEPT
     where DEPTNO = #{deptno,jdbcType=INTEGER}
   </delete>
   
@@ -31,13 +31,13 @@
     </select>  
   
   <insert id="insert" parameterType="com.wonder.core.schema.Dept" >
-    insert into dept (DEPTNO, DNAME, LOC
+    insert into DEPT (DEPTNO, DNAME, LOC
       )
     values (#{deptno,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.wonder.core.schema.Dept" >
-    insert into dept
+    insert into DEPT
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="deptno != null" >
         DEPTNO,
@@ -62,7 +62,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.wonder.core.schema.Dept" >
-    update dept
+    update DEPT
     <set >
       <if test="dname != null" >
         DNAME = #{dname,jdbcType=VARCHAR},
@@ -74,7 +74,7 @@
     where DEPTNO = #{deptno,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wonder.core.schema.Dept" >
-    update dept
+    update DEPT
     set DNAME = #{dname,jdbcType=VARCHAR},
       LOC = #{loc,jdbcType=VARCHAR}
     where DEPTNO = #{deptno,jdbcType=INTEGER}

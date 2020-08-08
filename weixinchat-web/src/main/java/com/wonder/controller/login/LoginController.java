@@ -41,7 +41,16 @@ public class LoginController {
 	public ModelAndView login(@RequestParam(value = "openid") String openid){
 		log.info("openid[{}]",openid);
 		log.info("进入login");
+		//免注册
+//		ModelAndView mav = new ModelAndView();
+//		mav.addObject("openid",openid);
+//		mav.getModel().put("openid", openid);
+//		mav.setViewName("login");
+//		return mav;
+
+		//是否跳转注册页
 		WxUser wxUser = wxUserDAO.selectByOpenid(openid);
+
 		//如果用户存在跳转登录页登录
 		if(wxUser!=null) {
 			ModelAndView mav = new ModelAndView();
@@ -94,28 +103,32 @@ public class LoginController {
 		log.info("account:"+account); 
 		log.info("password:"+password);
 		Map<String,String> map = new HashMap<String,String>();
-		try{
-			WxUser wxUser = wxUserDAO.selectByOpenid(account);
-			if(wxUser!=null
-//					&&password.equals(wxUser.getPwd())
-					) {
-				log.info("用户[{}]登录成功",wxUser.getOpenid());
-				map.put("result","登录成功");
-				map.put("status","1");
-				req.getSession().setAttribute("openid", account);//记录session
-				req.getSession().setMaxInactiveInterval(300);
-//				req.getSession().setAttribute("refresh_token", refresh_token);
-			}else {
-				map.put("result","密码错误");
-				map.put("status","2");
-				log.info("用户[{}]密码错误",wxUser.getOpenid());
-			}
+		map.put("result","登录成功");
+		map.put("status","1");
+		req.getSession().setAttribute("openid", account);//记录session
+		req.getSession().setMaxInactiveInterval(300);
+//		try{
+//			WxUser wxUser = wxUserDAO.selectByOpenid(account);
+//			if(wxUser!=null
+////					&&password.equals(wxUser.getPwd())
+//					) {
+//				log.info("用户[{}]登录成功",wxUser.getOpenid());
+//				map.put("result","登录成功");
+//				map.put("status","1");
+//				req.getSession().setAttribute("openid", account);//记录session
+//				req.getSession().setMaxInactiveInterval(300);
+////				req.getSession().setAttribute("refresh_token", refresh_token);
+//			}else {
+//				map.put("result","密码错误");
+//				map.put("status","2");
+//				log.info("用户[{}]密码错误",wxUser.getOpenid());
+//			}
 			
 			
-		}catch(Exception e){
-			e.printStackTrace();
-			
-		}
+//		}catch(Exception e){
+//			e.printStackTrace();
+//
+//		}
 		return  JSON.toJSONString(map);
 	}
 	

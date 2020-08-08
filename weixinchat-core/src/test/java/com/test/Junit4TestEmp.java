@@ -16,7 +16,7 @@ import com.wonder.core.server.EmpService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" })
+@ContextConfiguration(locations = { "classpath:spring-core.xml", "classpath:spring-mybatis.xml" })
 public class Junit4TestEmp {
 //	private static final Logger logger1 = Logger.getLogger(Test.class);
 	private final static Logger logger = LoggerFactory.getLogger(Junit4TestEmp.class);

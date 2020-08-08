@@ -20,19 +20,19 @@
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
-		from emp
+		from EMP
 		where empno = #{empno,jdbcType=INTEGER}
 	</select>
 	<!-- 查全表  -->
 	<select id="findAll"  resultMap="BaseResultMap">
-		select * from emp
+		select * from EMP
 	</select>
 	
 	
 	
 	<!-- 根据对象查询数据 -->
 	<select id="findByEmp"  resultMap="BaseResultMap" parameterType="com.wonder.core.schema.Emp">
-		select * from emp   where 1=1 
+		select * from EMP   where 1=1
 		     <if test="ename != null">
 				and ename = #{ename,jdbcType=VARCHAR} 
 			</if>
@@ -60,12 +60,12 @@
 	</select>
 	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from emp
+		delete from EMP
 		where empno = #{empno,jdbcType=INTEGER}
 	</delete>
 	
 	<insert id="insert" parameterType="com.wonder.core.schema.Emp">
-		insert into emp (empno, ename, job,
+		insert into EMP (empno, ename, job,
 		mgr, hiredate, sal,
 		comm, deptno)
 		values (#{empno,jdbcType=INTEGER}, #{ename,jdbcType=VARCHAR},
@@ -77,7 +77,7 @@
 	
 	
 	<insert id="insertSelective" parameterType="com.wonder.core.schema.Emp">
-		insert into emp
+		insert into EMP
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="empno != null">
 				empno,
@@ -132,7 +132,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.wonder.core.schema.Emp">
-		update emp
+		update EMP
 		<set>
 			<if test="ename != null">
 				ename = #{ename,jdbcType=VARCHAR},
@@ -159,7 +159,7 @@
 		where empno = #{empno,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.wonder.core.schema.Emp">
-		update emp
+		update EMP
 		set ename = #{ename,jdbcType=VARCHAR},
 		job = #{job,jdbcType=VARCHAR},
 		mgr = #{mgr,jdbcType=INTEGER},

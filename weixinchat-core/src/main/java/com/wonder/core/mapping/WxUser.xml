@@ -9,12 +9,12 @@
   <select id="selectByOpenid" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     openid,nickname,pwd
-    from wx_user
+    from WX_USER
     where openid = #{openid,jdbcType=VARCHAR}
   </select>
   
     <insert id="insertByWxUser" parameterType="com.wonder.core.schema.WxUser" >
-    insert into wx_user (OPENID,NICKNAME,PWD)
+    insert into WX_USER (OPENID,NICKNAME,PWD)
     value (#{openid,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}
       )
   </insert>

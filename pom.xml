@@ -91,10 +91,11 @@
 			<version>1.2.2</version>
 		</dependency>
 		<!-- 阿里巴巴数据源  -->
+		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>0.2.9</version>
+			<version>1.1.23</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -112,7 +113,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.30</version>
+			<version>8.0.21</version>
 		</dependency>
 		<!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
 		<dependency>
